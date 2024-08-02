@@ -1,13 +1,29 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, createComponent } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+
+import { CreateComponent } from './fruit/create/create.component';
+import { HomeComponent } from './fruit/home/home.component';
+import { EditComponent } from './fruit/edit/edit.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    HomeComponent,
+    CreateComponent,
+    EditComponent
+  ]
 })
 export class AppComponent {
-  title = 'my-crud-app';
+  constructor(private router: Router) {}
+
+  navigateToCreate() {
+    this.router.navigate(['/fruit/create']);
+  }
 }
